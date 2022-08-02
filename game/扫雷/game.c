@@ -1,5 +1,6 @@
-#include <malloc.h>
 #include "game.h"
+
+#include <malloc.h>
 
 static Map *map = NULL;
 
@@ -7,25 +8,25 @@ int boomSize(int x, int y);
 
 Map *gameInit() {
     // 开辟空间
-    map = (Map *) malloc(sizeof(Map));
-    map->u_map = (UsrMap *) malloc(sizeof(UsrMap));
-    map->c_map = (Caculate *) malloc(sizeof(Caculate));
+    map = (Map *)malloc(sizeof(Map));
+    map->u_map = (UsrMap *)malloc(sizeof(UsrMap));
+    map->c_map = (Caculate *)malloc(sizeof(Caculate));
     map->u_map->sum = 0;
-    
+
     // 计算数组赋初值
     for (int i = 0; i < ROW + 2; i++) {
         for (int j = 0; j < COL + 2; j++) {
             map->c_map->arr[i][j] = 0;
         }
     }
-    
+
     // 用户数组赋初值
     for (int i = 0; i < ROW; i++) {
         for (int j = 0; j < COL; j++) {
             map->u_map->arr[i][j] = -1;
         }
     }
-    
+
     // 放雷
     for (int i = 0; i < BOOMSIZE; i++) {
         int flag = 1;
@@ -40,23 +41,23 @@ Map *gameInit() {
             }
         }
     }
-    
+
     int temp[ROW][COL] = {0};
-    
-    for (int i = 0; i < COL;i++) {
-        for (int j = 0; j < ROW;j++) {
+
+    for (int i = 0; i < COL; i++) {
+        for (int j = 0; j < ROW; j++) {
             temp[i][j] = -1;
         }
     }
-    
-    for (int i = 1; i < COL+1;i++) {
-        for (int j = 1; j < ROW+1;j++) {
+
+    for (int i = 1; i < COL + 1; i++) {
+        for (int j = 1; j < ROW + 1; j++) {
             temp[i - 1][j - 1] = boomSize(i, j);
         }
     }
-    
-    for (int i = 0; i < COL;i++) {
-        for (int j = 0; j < ROW;j++) {
+
+    for (int i = 0; i < COL; i++) {
+        for (int j = 0; j < ROW; j++) {
             map->u_map->sum += temp[i][j];
         }
     }
@@ -85,11 +86,11 @@ int winOrDefault() {
     }
     if (sum == map->u_map->sum - BOOMSIZE)
         return 1;
-    
+
     int x;
     int y;
     scanf("%d%d", &x, &y);
-    
+
     if (isBoom(x, y))
         return -1;
     else {
@@ -100,7 +101,7 @@ int winOrDefault() {
 
 void reflesh() {
     for (int i = 0; i < COL; i++) {
-        for (int j = 0; j < ROW; j++){
+        for (int j = 0; j < ROW; j++) {
             if (map->u_map->arr[i][j] == -1)
                 printf("* ");
             else
@@ -122,16 +123,16 @@ int Game() {
     if (map != NULL)
         // 销毁当前map指向的空间
         DelGame();
-    
+
     // 标志位
     // flag == 1  赢了
     // flag == 0  扫雷没有完成
     // flag == -1 输了
     int flag = 0;
-    
+
     // 分配内存空间并赋初值
     gameInit();
-    
+
     // 循环，在这个函数里进行输入，判断输赢等，函数会返回标志位的值
     while (1) {
         // 判断输赢
@@ -140,6 +141,5 @@ int Game() {
             return flag;
         // 刷新显示
         reflesh();
-
     }
 }

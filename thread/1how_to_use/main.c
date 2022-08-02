@@ -4,8 +4,7 @@
 
 #define MAX_SIZE 1000
 
-typedef struct MyArgs
-{
+typedef struct MyArgs {
     //
     int first;
     int last;
@@ -14,19 +13,15 @@ typedef struct MyArgs
 
 int arr[MAX_SIZE];
 
-void *func(void *args)
-{
+void *func(void *args) {
     MyArgs *option = (MyArgs *)args;
-    for (int i = option->first; i < option->last; i++)
-    {
+    for (int i = option->first; i < option->last; i++) {
         option->sum += arr[i];
     }
 }
 
-int main()
-{
-    for (int i = 0; i < MAX_SIZE; i++)
-    {
+int main() {
+    for (int i = 0; i < MAX_SIZE; i++) {
         arr[i] = rand() % 50;
     }
 
