@@ -64,5 +64,8 @@
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, IndentCaseLabels: false, ColumnLimit: 0, AccessModifierOffset: -4 }",
     "window.zoomLevel": 1,
     "editor.fontFamily": "'consolas', 'consola', consola",
-    "editor.formatOnPaste": true
+    "editor.formatOnPaste": true,
+    "files.associations": {
+        "string.h": "c"
+    }
 }
