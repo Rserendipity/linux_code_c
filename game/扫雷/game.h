@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define COL 4
 #define ROW 4
@@ -12,10 +12,10 @@ typedef struct UsrMap {
 } UsrMap;
 
 typedef struct Caculate {
-    int arr[COL+2][ROW+2];
+    int arr[COL + 2][ROW + 2];
 } Caculate;
 
-typedef struct Map{
+typedef struct Map {
     UsrMap* u_map;
     Caculate* c_map;
 } Map;
