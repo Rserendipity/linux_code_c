@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-#include <stdio.h>
-
-int main() {
-    
-=======
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -44,6 +38,5 @@ int main() {
     printf("sum = %d\n", sum);
     printf("realSum = %d\n", realSum * 2);
 
->>>>>>> master
     return 0;
 }
