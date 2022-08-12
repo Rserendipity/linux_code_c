@@ -11,8 +11,8 @@ typedef struct Word {
 	FILE* pf_en;
 	FILE* pf_ch;
 	FILE* pf_mem;
-	long long seck_en;
-	long long seck_ch;
+	long long seek_en;
+	long long seek_ch;
 } Word;
 typedef struct Buffer {
 	char* en_buffer;

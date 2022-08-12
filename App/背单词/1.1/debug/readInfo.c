@@ -16,9 +16,9 @@ void wordInit(Word** w) {
     }
 
     // 偏移文件指针,恢复记录
-    fscanf((*w)->pf_mem, "%lld %lld", &(*w)->seck_en, &(*w)->seck_ch);
-    fseek((*w)->pf_ch, (*w)->seck_ch, 0);
-    fseek((*w)->pf_en, (*w)->seck_en, 0);
+    fscanf((*w)->pf_mem, "%lld %lld", &(*w)->seek_en, &(*w)->seek_ch);
+    fseek((*w)->pf_ch, (*w)->seek_ch, 0);
+    fseek((*w)->pf_en, (*w)->seek_en, 0);
     // 改变偏移量以后就可以释放掉当前的info.txt的文件指针了，释放资源
     fclose((*w)->pf_mem);
 }
@@ -36,12 +36,12 @@ void getEnglish(Buffer* b, Word** w) {
     for (int i = 0; (ch = fgetc((*w)->pf_en)) != '\n'; i++) {
         b->en_buffer[i] = ch;
         // 每读取到一个字节，偏移量就加一
-        (*w)->seck_en += 1;
+        (*w)->seek_en += 1;
     }
     // 把单词转换成纯小写
     b->en_buffer = _strlwr(b->en_buffer);
     // 结束时便宜两个字节，跳过回车和换行
-    (*w)->pf_en += 2;
+    (*w)->seek_en += 2;
 }
 
 // 判断这个字符是否为字母
@@ -61,17 +61,17 @@ void getChinese(Buffer* b, Word** w) {
         }
         b->ch_buffer[i] = ch;
         // 每读取到一个字节，偏移量就加一
-        (*w)->seck_ch += 1;
+        (*w)->seek_ch += 1;
     }
     // 结束时偏移两个字节，跳过回车和换行
-    (*w)->seck_ch += 2;
+    (*w)->seek_ch += 2;
 }
 
 // 保存进度，关闭文件流，释放w所指向的空间
 void wordDel(Word* w) {
     // 把当前的字节偏移信息写入到文件，记录当前背到哪里了
     w->pf_mem = fopen("./data/info.txt", "w");
-    fprintf(w->pf_mem, "%lld %lld", w->seck_en, w->seck_ch);
+    fprintf(w->pf_mem, "%lld %lld", w->seek_en, w->seek_ch);
 
     // 释放文件流
     fclose(w->pf_en);
