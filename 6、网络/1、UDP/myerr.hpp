@@ -5,7 +5,7 @@ namespace myerr
     {
         USE_ERR = 1,
         SOCKET_ERR,
-        BIND_ERR
+        BIND_ERR,
     };
 }
 
