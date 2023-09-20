@@ -23,9 +23,7 @@ public:
     // UdpServer(std::string ip, uint16_t port = DEFALUT_PORT) : _ip(ip),
     // _port(port) {}
     UdpServer(uint16_t port = DEFAULT_PORT)
-        : _port(port)
-    {
-    }
+        : _port(port) {}
     void InitServer()
     {
         // 1. 创建socket描述符fd

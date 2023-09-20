@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
         return myerr::USE_ERR;
     }
     int port = atoi(argv[1]);
-    
+
     unique_ptr<UdpServer> us(new UdpServer(port));
     us->InitServer();
     us->Start();
