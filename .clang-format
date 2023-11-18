@@ -1,0 +1,9 @@
+BasedOnStyle: Microsoft
+# BasedOnStyle: LLVM
+AccessModifierOffset: -4
+AlignConsecutiveMacros: true
+AlignTrailingComments: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: false
+BreakBeforeBraces: Allman
+ColumnLimit: 0
